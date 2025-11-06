@@ -34,7 +34,7 @@ public class VendingMachineImpl implements VendingMachine{
       //if the id is found
         Product foundProduct=products[indexFoundAt];
         if(getBalance()>foundProduct.getPrice()) {
-            depositPool = -(int) Math.ceil(foundProduct.getPrice());
+            depositPool -= (int) Math.ceil(foundProduct.getPrice());
 
             Product[] newProducts = new Product[products.length - 1];
             for (int i = 0, j = 0; i < products.length; i++) {
