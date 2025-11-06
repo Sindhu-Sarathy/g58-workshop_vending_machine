@@ -17,7 +17,7 @@ public class VendingMachineImpl implements VendingMachine{
 
     @Override
     public int getBalance() {
-        return 0;
+        return depositPool;
     }
 
     @Override
@@ -55,16 +55,30 @@ public class VendingMachineImpl implements VendingMachine{
 
     @Override
     public int endSession() {
-        return 0;
+        int temp=depositPool;
+        depositPool=0;
+        return temp;
     }
 
     @Override
     public String getDescription(int id) {
-        return "";
+
+        for(Product product:products){
+            if(product.getId()==id){
+                return product.examine();
+            }
+
+        }
+        throw new RuntimeException("Product not found");
     }
 
     @Override
     public String[] getProducts() {
-        return new String[0];
+        String[] description=new String[products.length];
+        for (int i = 0; i < products.length; i++) {
+            description[i] = products[i].examine();
+        }
+
+        return description;
     }
 }
