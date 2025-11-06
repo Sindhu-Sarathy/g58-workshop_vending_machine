@@ -25,7 +25,7 @@ public class Chips implements Product {
 
     @Override
     public String use() {
-        return "";
+        return "The chips are used";
     }
 
     public int getId() {

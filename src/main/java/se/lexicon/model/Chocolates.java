@@ -27,7 +27,7 @@ public class Chocolates implements Product {
 
     @Override
     public String use() {
-        return "";
+        return "The Chocolates has been used";
     }
 
     public int getId() {
