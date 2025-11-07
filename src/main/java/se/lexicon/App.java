@@ -19,11 +19,17 @@ public class App
 
         VendingMachineImpl vendingMachine=new VendingMachineImpl(products);
 
+        Product requested=null;
+
         // To print all products
+        System.out.println("All products: ");
         System.out.println(Arrays.toString(vendingMachine.getProducts()));
 
+        System.out.println("---------------------------------------------------------");
         //To get a product description
-        System.out.println(vendingMachine.getDescription(2));
+        System.out.println("Product Description");
+        System.out.println(vendingMachine.getDescription(0));
+        System.out.println();
 
         //add currency
         vendingMachine.addCurrency(Currency.TEN);
@@ -31,32 +37,49 @@ public class App
         vendingMachine.addCurrency(Currency.FIVE);
 
         //get balance
+        System.out.println();
+        System.out.println("The Total amount is: ");
         System.out.println(vendingMachine.getBalance());
 
-        //request something not expensive
-        try{
-            Product requested= vendingMachine.request(1);
-            System.out.println("You have brought: "+requested.getProductName());
-        } catch (RuntimeException e) {
-            System.out.println("Too Expensive");
-        }
+        System.out.println();
+//        //request something not available
+//        try{
+//            requested= vendingMachine.request(3);
+//            System.out.println("The product is not available.");
+//        } catch (RuntimeException e) {
+//            System.out.println(e.getMessage());
+//        }
 
         //request something expensive
         try{
-            Product requested= vendingMachine.request(2);
+            requested= vendingMachine.request(1);
             System.out.println("You have brought: "+requested.getProductName());
         } catch (RuntimeException e) {
-            System.out.println("Too Expensive");
+            System.out.println(e.getMessage());
         }
-
+        System.out.println();
         //Getting balance after buying the products
+        System.out.println("The Balance amount: ");
         System.out.println(vendingMachine.getBalance());
 
         //Ending session
-        vendingMachine.endSession();
+        System.out.println();
+
+        int change= vendingMachine.endSession();
+        System.out.println("The Session ended.Please find the remaining amount:"+change);
 
         //getting balance after ending session
+        System.out.println();
+        System.out.println("The Current balance is: ");
         System.out.println(vendingMachine.getBalance());
+
+
+        //Used Products
+        System.out.println("The Used Products: ");
+
+        if(requested!=null){
+            System.out.println(requested.use());
+        }
 }
 
 

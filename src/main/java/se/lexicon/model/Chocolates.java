@@ -9,9 +9,9 @@ public class Chocolates implements Product {
     private double price;
 
     public Chocolates(String productName, double price) {
-        this.Id= Product.SEQUENCER.getAndIncrement();
-        this.productName = productName;
-        this.price = price;
+        this.Id= Product.nextId();
+        setProductName(productName);
+        setPrice(price);
     }
 
     @Override
@@ -27,27 +27,34 @@ public class Chocolates implements Product {
 
     @Override
     public String use() {
-        return "The Chocolates has been used";
+        return getProductName()+ " is used.";
     }
 
+    @Override
     public int getId() {
         return Id;
     }
 
+    @Override
     public String getProductName() {
         return productName;
     }
 
+    @Override
     public void setProductName(String productName) {
-        this.productName = productName;
+        this.productName=productName;
     }
 
+    @Override
     public double getPrice() {
         return price;
     }
 
+    @Override
     public void setPrice(double price) {
-        this.price = price;
+        this.price=price;
     }
+
+
 }
 

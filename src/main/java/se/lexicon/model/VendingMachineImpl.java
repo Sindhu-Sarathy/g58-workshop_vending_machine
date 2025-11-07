@@ -22,16 +22,16 @@ public class VendingMachineImpl implements VendingMachine{
 
     @Override
     public Product request(int id) {
-      int indexFoundAt=1;
-      for(Product product:products){
-          if(product.getId()==id){
-              indexFoundAt=id;
-              break;
-          }
-      }
-      //If the id is not found
-      if(indexFoundAt==-1) throw new RuntimeException("The product was not found.");
-      //if the id is found
+        int indexFoundAt=1;
+        for(Product product:products){
+            if(product.getId()==id){
+                indexFoundAt=id;
+                break;
+            }
+        }
+        //If the id is not found
+        if(indexFoundAt==-1) throw new RuntimeException("The product was not found.");
+        //if the id is found
         Product foundProduct=products[indexFoundAt];
         if(getBalance()>foundProduct.getPrice()) {
             depositPool -= (int) Math.ceil(foundProduct.getPrice());
